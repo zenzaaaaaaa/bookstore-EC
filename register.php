@@ -21,42 +21,59 @@
       </div>
 
       <div class="d-flex justify-content-center mt-5">
-        <div>
-          <div class="text-center mb-1">
-            <label style="width: 96px;">名前</label>
-            <input type="text" name="name" class="form-control">
-            <span class="text-danger d-block" id="name-error" style="min-height: 25px;"></span>
+        <form id="register-form">
+          <div class="d-flex align-items-start text-center mb-1">
+            <label style="width: 96px; padding-top: 6.6px;">名前</label>
+            <div>
+              <input type="text" id="register-name" class="form-control">
+              <span class="text-danger d-block" id="name-error" style="min-height: 25px;"></span>
+            </div>
           </div>
-          <div class="text-center mb-1">
-            <label style="width: 96px;">メールアドレス</label>
-            <input type="email" name="email" class="form-control">
-            <span class="text-danger d-block" id="email-error" style="min-height: 25px;"></span>
+
+          <div class="d-flex align-items-start text-center mb-1">
+            <label style="width: 96px; padding-top: 6.6px;">メールアドレス</label>
+            <div>
+              <input type="text" id="register-email" class="form-control">
+              <span class="text-danger d-block" id="email-error" style="min-height: 25px;"></span>
+            </div>
           </div>
-          <div class="text-center mb-1">
-            <label style="width: 96px;">パスワード</label>
-            <input type="password" name="password" class="form-control">
-            <span class="text-danger d-block" id="password-error" style="min-height: 25px;"></span>
+
+          <div class="d-flex align-items-start  text-center mb-1">
+            <label style="width: 96px; padding-top: 6.6px;">パスワード</label>
+            <div>
+              <input type="password" id="register-password" class="form-control">
+              <span class="text-danger d-block" id="password-error" style="min-height: 25px;"></span>
+            </div>
           </div>
-          <div class="text-center mb-1">
-            <label style="width: 96px;">電話番号</label>
-            <input type="tel" name="phone" class="form-control">
-            <span class="text-danger d-block" id="phone-error" style="min-height: 25px;"></span>
+
+          <div class="d-flex align-items-start  text-center mb-1">
+            <label style="width: 96px; padding-top: 6.6px;">電話番号</label>
+            <div>
+              <input type="tel" id="register-phone-number" class="form-control">
+              <span class="text-danger d-block" id="phone-number-error" style="min-height: 25px;"></span>
+            </div>
           </div>
-          <div class="text-center mb-3">
-            <label>性別（任意）</label>
-            <select name="gender" class="from-control">
+
+          <div class="d-flex align-items-center text-center mb-3">
+            <label class="">性別（任意）</label>
+            <select id="gender" class="form-control" style="width: 200px;">
               <option value="">選択しない</option>
               <option value="male">男性</option>
               <option value="female">女性</option>
               <option value="other">その他</option>
             </select>
           </div>
-        </div>
+
+          <div class="text-center">
+            <button type="submit" id="register-btn" class="btn btn-primary">送信</button>
+          </div>
+        </form>
       </div>
     </div>
   </main>
   <?php include 'components/footer.php'; ?>
-  <script type="module" src="script.js" defer></script>
+  <script type="module" src="js/script.js" defer></script>
+  <script type="module" src="js/register.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
