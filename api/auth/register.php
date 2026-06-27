@@ -36,7 +36,12 @@ if (!empty($errors)) {
     echo json_encode(["success" => false, "errors" => $errors]);
     exit; // ここで処理を止める
 }
+//パスワードのハッシュ化
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 // バリデーション通ったらdbに情報を登録する
+$stmt = $pdo->prepare("INSERT INTO users (name, email,password,phone,gender) VALUES (?, ?, ?, ?, ?)");
+$stmt->execute([$name, $email, $hashedPassword, $phone, $gender]);
 
+// 成功したらjsに返る
 echo json_encode(["success" => true]);

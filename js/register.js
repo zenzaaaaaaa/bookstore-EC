@@ -68,8 +68,6 @@ function validate() {
   // エラーなければtrue,あればfalseを返す
   return errors.length == 0;
 }
-// バリデーション通ったらボタンのテキストを変える
-registerBtn.textContent = "送信中...";
 
 // 会員登録フォーム送信
 registerForm.addEventListener("submit", async (e) => {
@@ -80,18 +78,39 @@ registerForm.addEventListener("submit", async (e) => {
     registerBtn.disabled = false;
     return;
   }
-  // 入力されたデータをjsonでphpにおくる
-  const response = await fetch("/api/auth/register.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: name.value,
-      email: email.value,
-      password: password.value,
-      phone: phoneNumber.value,
-      gender: gender.value,
-    }),
-  });
-  // phpから戻り値をjsonで受け取る
-  const data = await response.json();
+  try {
+    registerBtn.textContent = "送信中...";
+    // 入力されたデータをjsonでphpにおくる
+    const response = await fetch("api/auth/register.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        phone: phoneNumber.value,
+        gender: gender.value,
+      }),
+    });
+    // phpから戻り値をjsonで受け取る
+    const data = await response.json();
+
+    if (data.success == false) {
+      errorName.textContent = data.errors.name ?? "";
+      errorEmail.textContent = data.errors.email ?? "";
+      errorPassword.textContent = data.errors.password ?? "";
+      errorPhoneNumber.textContent = data.errors.phone ?? "";
+      registerBtn.disabled = false;
+    } else {
+      alert("登録に成功しました！");
+      window.reload;
+      registerBtn.disabled = false;
+      registerBtn.textContent = "送信";
+    }
+  } catch {
+    alert("エラーが発生しました。もう一度お試し下さい");
+    window.reload;
+    registerBtn.disabled = false;
+    registerBtn.textContent = "送信";
+  }
 });

@@ -13,6 +13,8 @@
 </head>
 
 <body>
+  <?php include 'components/loading.php'; ?>
+  <?php include 'components/header.php'; ?>
   <main>
   </main>
   <script type="module" src="js/script.js" defer></script>
